@@ -1,11 +1,15 @@
 package com.tradebrite.bank_accounts.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Setter
+@Getter
 public class Account {
 
     @Id
@@ -13,8 +17,8 @@ public class Account {
     private Long id;
     private String number;
     private Double balance;
-    private String name;
-    private String emailAddress;
-    private String phoneNumber;
+
+    @ManyToMany (mappedBy = "accounts")
+    private List<Customer> owners = new ArrayList<>();
 
 }
