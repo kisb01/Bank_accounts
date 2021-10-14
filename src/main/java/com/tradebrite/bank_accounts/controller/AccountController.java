@@ -54,4 +54,31 @@ public class AccountController {
             accountService.deleteById(StringToLong.convert(id));
         }
     }
+
+    @GetMapping("/{id}/deposit")
+    public void deposit(@PathVariable("id") String id, @RequestParam("amount") String amount) {
+        if (StringToLong.convert(id) == null || StringToLong.convert(amount) == null) {
+            throw new RuntimeException("Must enter a valid number");
+        } else {
+            accountService.deposit(StringToLong.convert(id), StringToLong.convert(amount));
+        }
+    }
+
+    @GetMapping("/{id}/withdraw")
+    public void withdraw(@PathVariable("id") String id, @RequestParam("amount") String amount) {
+        if (StringToLong.convert(id) == null || StringToLong.convert(amount) == null) {
+            throw new RuntimeException("Must enter a valid number");
+        } else {
+            accountService.withdraw(StringToLong.convert(id), StringToLong.convert(amount));
+        }
+    }
+
+    @GetMapping("/{senderId}/transfer/{receiverId}")
+    public void transfer(@PathVariable("senderId") String senderId, @PathVariable("receiverId") String receiverId, @RequestParam("amount") String amount) {
+        if (StringToLong.convert(senderId) == null || StringToLong.convert(amount) == null || StringToLong.convert(receiverId) == null) {
+            throw new RuntimeException("Must enter a valid number");
+        } else {
+            accountService.transfer(StringToLong.convert(senderId), StringToLong.convert(receiverId), StringToLong.convert(amount));
+        }
+    }
 }

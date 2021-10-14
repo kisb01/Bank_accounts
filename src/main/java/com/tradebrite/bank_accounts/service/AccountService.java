@@ -3,8 +3,10 @@ package com.tradebrite.bank_accounts.service;
 import com.tradebrite.bank_accounts.model.Account;
 import com.tradebrite.bank_accounts.repository.AccountRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,5 +42,25 @@ public class AccountService {
         accountRepository.deleteById(id);
     }
 
+    @Transactional
+    public Double deposit(Long id, Long amount) {
+        Account account = findById(id);
+        account.deposit(amount);
+        return save(account).getBalance();
+    }
 
+    @Transactional
+    public Double withdraw(Long id, Long amount) {
+        Account account = findById(id);
+        account.withdraw(amount);
+        return save(account).getBalance();
+    }
+
+    @Transactional
+    public void transfer(Long senderId, Long receiverId, Long amount) {
+        Account sender = findById(senderId);
+        Account receiver = findById(receiverId);
+        sender.transferToAccount(receiver, amount);
+        accountRepository.saveAll(Arrays.asList(sender, receiver));
+    }
 }

@@ -1,7 +1,6 @@
 package com.tradebrite.bank_accounts.controller;
 
 import com.tradebrite.bank_accounts.converter.StringToLong;
-import com.tradebrite.bank_accounts.model.Account;
 import com.tradebrite.bank_accounts.model.Customer;
 import com.tradebrite.bank_accounts.service.CustomerService;
 import org.springframework.web.bind.annotation.*;
