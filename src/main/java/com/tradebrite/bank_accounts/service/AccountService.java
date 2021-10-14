@@ -43,14 +43,14 @@ public class AccountService {
     }
 
     @Transactional
-    public Double deposit(Long id, Long amount) {
+    public Long deposit(Long id, Long amount) {
         Account account = findById(id);
         account.deposit(amount);
         return save(account).getBalance();
     }
 
     @Transactional
-    public Double withdraw(Long id, Long amount) {
+    public Long withdraw(Long id, Long amount) {
         Account account = findById(id);
         account.withdraw(amount);
         return save(account).getBalance();

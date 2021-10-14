@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,11 +18,22 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Pattern(regexp = "([0-9]{4}[-]*[0-9]{4})")
     private String number;
     private Long balance;
 
     @ManyToMany(mappedBy = "accounts")
     private List<Customer> owners = new ArrayList<>();
+
+    public Account() {
+    }
+
+    public Account(Long id, String number, Long balance) {
+        this.id = id;
+        this.number = number;
+        this.balance = balance;
+    }
 
     public void deposit(Long amount) {
         if (amount <= 0) {
