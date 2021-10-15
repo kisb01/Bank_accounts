@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Setter
+@Getter
 @Slf4j
 public class Account {
 
@@ -31,34 +33,6 @@ public class Account {
         this.id = id;
         this.number = number;
         this.balance = balance;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public List<Customer> getOwners() {
-        return owners;
-    }
-
-    public void setOwners(List<Customer> owners) {
-        this.owners = owners;
-    }
-
-    public Long getBalance() {
-        return balance;
     }
 
     public void deposit(Long amount) {
