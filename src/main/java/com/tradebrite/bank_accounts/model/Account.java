@@ -1,5 +1,6 @@
 package com.tradebrite.bank_accounts.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,7 @@ import java.util.List;
 @Setter
 @Getter
 @Slf4j
+@JsonIgnoreProperties("owners")
 public class Account {
 
     @Id
