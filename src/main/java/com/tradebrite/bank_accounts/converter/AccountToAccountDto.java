@@ -25,7 +25,7 @@ public class AccountToAccountDto implements Converter<Account, AccountDto> {
         accountDto.setNumber(source.getNumber());
         accountDto.setBalance(source.getBalance());
         if (source.getOwners() != null && source.getOwners().size() > 0) {
-            source.getOwners().forEach(customer -> accountDto.getCustomers().add(customerToCustomerDto.convert(customer)));
+            source.getOwners().forEach(customer -> accountDto.getCustomers().add(customer.getId()));
         }
         return accountDto;
     }

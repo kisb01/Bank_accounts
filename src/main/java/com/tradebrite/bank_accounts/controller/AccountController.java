@@ -1,6 +1,7 @@
 package com.tradebrite.bank_accounts.controller;
 
 import com.tradebrite.bank_accounts.converter.StringToLong;
+import com.tradebrite.bank_accounts.dto.AccountDto;
 import com.tradebrite.bank_accounts.model.Account;
 import com.tradebrite.bank_accounts.service.AccountService;
 import org.springframework.web.bind.annotation.*;
@@ -32,18 +33,16 @@ public class AccountController {
     }
 
     @PostMapping
-    public Account save(@RequestBody Account account) {
-        return accountService.save(account);
+    public AccountDto save(@RequestBody AccountDto accountDto) {
+        return accountService.save(accountDto);
     }
 
     @PutMapping("/{id}")
-    public Account update(@RequestBody Account account, @PathVariable("id") String id) {
+    public AccountDto update(@RequestBody AccountDto accountDto, @PathVariable("id") String id) {
         if (StringToLong.convert(id) == null) {
             throw new RuntimeException("Must enter a valid number");
-        } else {
-            account.setId(StringToLong.convert(id));
         }
-        return accountService.save(account);
+        return accountService.save(accountDto);
     }
 
     @DeleteMapping("/{id}")

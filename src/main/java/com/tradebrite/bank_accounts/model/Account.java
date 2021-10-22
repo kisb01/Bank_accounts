@@ -14,7 +14,6 @@ import java.util.List;
 @Setter
 @Getter
 @Slf4j
-@JsonIgnoreProperties("owners")
 public class Account {
 
     @Id
